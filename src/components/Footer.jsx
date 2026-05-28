@@ -1,13 +1,13 @@
 import React from 'react'
+import Logo from './Logo'
 
 const Footer = () => {
   return (
     <footer className="py-12 px-6 border-t border-glass-border">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex flex-col items-center md:items-start">
-          <a href="#" className="text-2xl font-bold tracking-tighter flex items-center gap-2 mb-4">
-            <span className="w-8 h-8 rounded-lg bg-gradient-neon flex items-center justify-center text-dark text-lg font-black italic">Z</span>
-            <span className="text-main">ZenByte<span className="text-primary">Labs</span></span>
+          <a href="#" className="mb-4">
+            <Logo size="large" />
           </a>
           <p className="text-muted text-xs tracking-widest uppercase">Precision Digital Engineering © 2026</p>
         </div>

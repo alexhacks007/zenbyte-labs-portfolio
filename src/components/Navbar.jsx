@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ThemeToggle from './ThemeToggle'
 import Magnetic from './Magnetic'
+import Logo from './Logo'
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -11,6 +12,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   const navLinks = [
     { name: 'Services', href: '#services' },
     { name: 'Work', href: '#projects' },
+    { name: 'Templates', href: '#templates' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Process', href: '#process' },
     { name: 'Contact', href: '#contact' }
@@ -32,7 +34,7 @@ const Navbar = ({ theme, toggleTheme }) => {
       threshold: 0
     })
 
-    const sections = ['home', 'services', 'projects', 'pricing', 'process', 'contact']
+    const sections = ['home', 'services', 'projects', 'templates', 'pricing', 'process', 'contact']
     sections.forEach((id) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
@@ -54,16 +56,10 @@ const Navbar = ({ theme, toggleTheme }) => {
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
       isScrolled ? 'py-4 md:py-6' : 'py-8 md:py-12'
     }`}>
-      <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 flex justify-between items-center">
         <Magnetic>
-          <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-black font-black italic shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform duration-500">
-              Z
-            </div>
-            <div className="flex flex-col -space-y-1">
-              <span className="text-xl font-black tracking-tighter text-main">ZenByte<span className="text-primary">Labs</span></span>
-              <span className="text-[8px] font-mono tracking-[0.4em] opacity-30 uppercase">Precision_OS</span>
-            </div>
+          <a href="#home">
+            <Logo />
           </a>
         </Magnetic>
 
@@ -110,24 +106,27 @@ const Navbar = ({ theme, toggleTheme }) => {
           </div>
         </div>
 
-        {/* Mobile menu toggle */}
-        <button 
-          className="lg:hidden glass w-12 h-12 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all active:scale-90"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <motion.div 
-            animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-            className="w-5 h-0.5 bg-main" 
-          />
-          <motion.div 
-            animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="w-5 h-0.5 bg-main" 
-          />
-          <motion.div 
-            animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-            className="w-5 h-0.5 bg-main" 
-          />
-        </button>
+        {/* Mobile controls (ThemeToggle + Hamburger Menu) */}
+        <div className="flex lg:hidden items-center gap-2.5 sm:gap-4">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          <button 
+            className="glass w-12 h-12 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all active:scale-90"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <motion.div 
+              animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              className="w-5 h-0.5 bg-main" 
+            />
+            <motion.div 
+              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="w-5 h-0.5 bg-main" 
+            />
+            <motion.div 
+              animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              className="w-5 h-0.5 bg-main" 
+            />
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>

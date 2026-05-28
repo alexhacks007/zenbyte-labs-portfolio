@@ -1,8 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, MessageSquare, Phone, MapPin, Send, Code2, Briefcase } from 'lucide-react'
+import { Mail, MessageSquare, Send, Code2, Briefcase } from 'lucide-react'
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    objective: 'Web Platform',
+    message: ''
+  })
+  const [status, setStatus] = useState({
+    loading: false,
+    success: null,
+    error: null
+  })
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus({ loading: true, success: null, error: null })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: `ZenByteLabs Inquiry: ${formData.objective}`,
+          message: formData.message
+        }),
+      })
+
+      const data = await response.json()
+      if (response.ok && data.success) {
+        setStatus({ loading: false, success: 'TRANSMISSION_SUCCESSFUL', error: null })
+        setFormData({ name: '', email: '', objective: 'Web Platform', message: '' })
+      } else {
+        setStatus({ loading: false, success: null, error: data.error || 'TRANSMISSION_FAILED' })
+      }
+    } catch (err) {
+      console.error(err)
+      setStatus({ loading: false, success: null, error: 'CONNECTION_ERROR' })
+    }
+  }
+
   return (
     <section id="contact" className="section-padding">
       <div className="grid lg:grid-cols-2 gap-20">
@@ -13,15 +56,15 @@ const Contact = () => {
           </p>
 
           <div className="space-y-6">
-            <div className="flex items-center gap-6 group">
+            <a href={`mailto:${import.meta.env.VITE_EMAIL || 'zenbytelabsofficial@gmail.com'}`} className="flex items-center gap-6 group">
               <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center border border-white/5 group-hover:border-primary transition-all">
                 <Mail className="text-primary" />
               </div>
               <div className="space-y-1">
                 <div className="text-[10px] text-muted uppercase tracking-[0.3em] font-black">Direct Email</div>
-                <div className="text-2xl font-black tracking-tight group-hover:text-primary transition-colors italic">[Your Email]</div>
+                <div className="text-2xl font-black tracking-tight group-hover:text-primary transition-colors italic break-all">{import.meta.env.VITE_EMAIL || 'zenbytelabsofficial@gmail.com'}</div>
               </div>
-            </div>
+            </a>
 
             <div className="flex items-center gap-6 group">
               <div className="w-16 h-16 rounded-2xl bg-[#128C7E]/5 flex items-center justify-center border border-white/5 group-hover:border-[#128C7E] transition-all">
@@ -29,7 +72,7 @@ const Contact = () => {
               </div>
               <div className="space-y-1">
                 <div className="text-[10px] text-muted uppercase tracking-[0.3em] font-black">Instant Connect</div>
-                <a href="https://wa.me/yournumber" target="_blank" rel="noreferrer" className="text-2xl font-black tracking-tight text-[#128C7E] underline decoration-[#128C7E]/20 underline-offset-8 block italic">[Your Number]</a>
+                <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP || '916374066541'}`} target="_blank" rel="noreferrer" className="text-2xl font-black tracking-tight text-[#128C7E] underline decoration-[#128C7E]/20 underline-offset-8 block italic">{import.meta.env.VITE_WHATSAPP_DISPLAY || '+91 63740 66541'}</a>
               </div>
             </div>
           </div>
@@ -45,7 +88,7 @@ const Contact = () => {
 
             <div className="flex flex-wrap gap-4 items-center">
               <a
-                href="https://wa.me/yournumber"
+                href={`https://wa.me/${import.meta.env.VITE_WHATSAPP || '916374066541'}`}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 py-4 px-8 rounded-2xl bg-[#128C7E] text-white font-black uppercase tracking-widest text-[10px] shadow-lg shadow-[#128C7E]/20 transition-all hover:scale-105 hover:bg-[#075E54] active:scale-95"
@@ -74,36 +117,87 @@ const Contact = () => {
         </div>
 
         <div>
-          <form className="glass p-8 md:p-12 rounded-[2.5rem] space-y-6">
+          <form onSubmit={handleSubmit} className="glass p-8 md:p-12 rounded-[2.5rem] space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-widest text-muted px-1">Full Name</label>
-                <input type="text" placeholder="John Doe" className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all" />
+                <input 
+                  type="text" 
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="John Doe" 
+                  className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-widest text-muted px-1">Email Address</label>
-                <input type="email" placeholder="john@example.com" className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all" />
+                <input 
+                  type="email" 
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="john@example.com" 
+                  className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all" 
+                />
               </div>
             </div>
 
             <div className="space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest text-muted px-1">Objective</label>
-              <select className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all appearance-none text-muted">
-                <option>Web Platform</option>
-                <option>Mobile Engineering</option>
-                <option>AI Automation</option>
-                <option>General Inquiry</option>
+              <select 
+                value={formData.objective}
+                onChange={(e) => setFormData({ ...formData, objective: e.target.value })}
+                className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all appearance-none text-muted"
+              >
+                <option value="Web Platform">Web Platform</option>
+                <option value="Mobile Engineering">Mobile Engineering</option>
+                <option value="AI Automation">AI Automation</option>
+                <option value="General Inquiry">General Inquiry</option>
               </select>
             </div>
 
             <div className="space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest text-muted px-1">Message</label>
-              <textarea rows={4} placeholder="Tell us about your project..." className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all resize-none" />
+              <textarea 
+                rows={4} 
+                required
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Tell us about your project..." 
+                className="w-full bg-black/[0.03] dark:bg-white/5 border border-glass-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all resize-none" 
+              />
             </div>
 
-            <button type="submit" className="btn-primary w-full py-4 flex items-center justify-center gap-2 group">
-              Send Message <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <button 
+              type="submit" 
+              disabled={status.loading}
+              className="btn-primary w-full py-4 flex items-center justify-center gap-2 group disabled:opacity-50"
+            >
+              {status.loading ? 'TRANSMITTING...' : 'Send Message'} 
+              {!status.loading && <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
             </button>
+            
+            {status.success && (
+              <motion.div 
+                initial={{ opacity: 0, y: 5 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                className="text-[10px] text-center text-primary font-mono tracking-widest uppercase font-bold"
+              >
+                ● STATUS: {status.success}
+              </motion.div>
+            )}
+
+            {status.error && (
+              <motion.div 
+                initial={{ opacity: 0, y: 5 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                className="text-[10px] text-center text-red-500 font-mono tracking-widest uppercase font-bold"
+              >
+                ● STATUS: {status.error}
+              </motion.div>
+            )}
+
             <p className="text-[10px] text-center text-white/30 tracking-wider">SECURE TRANSMISSION ENCRYPTED</p>
           </form>
         </div>

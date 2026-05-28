@@ -17,7 +17,7 @@ const CustomCursor = () => {
     }
 
     const handleMouseOver = (e) => {
-      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('.magnetic')) {
+      if (e.target.closest('a, button, .magnetic')) {
         setIsHovering(true)
       } else {
         setIsHovering(false)
@@ -37,11 +37,14 @@ const CustomCursor = () => {
     <>
       <motion.div
         className="cursor-outline"
+        animate={{
+          scale: isHovering ? 2.5 : 1,
+          opacity: 1,
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         style={{
           x: cursorX,
           y: cursorY,
-          scale: isHovering ? 2.5 : 1,
-          opacity: 1,
         }}
       />
       <motion.div

@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Brain, Activity, Terminal, Eye, Zap, Database, BarChart3, ShieldCheck, Cpu, MousePointer2, TrendingUp } from 'lucide-react'
 
 const tabs = [
-  { id: 'intent', label: 'Intent Analysis', icon: <Eye size={16} />, color: '#00FFD1' },
-  { id: 'behavior', label: 'Behavioral Flow', icon: <Zap size={16} />, color: '#8B5CF6' },
-  { id: 'prediction', label: 'Conversion Prediction', icon: <Activity size={16} />, color: '#F472B6' },
+  { id: 'intent', label: 'Intent Analysis', icon: <Eye size={16} />, color: 'var(--color-primary)' },
+  { id: 'behavior', label: 'Behavioral Flow', icon: <Zap size={16} />, color: 'var(--color-secondary)' },
+  { id: 'prediction', label: 'Conversion Prediction', icon: <Activity size={16} />, color: 'var(--color-accent)' },
 ]
 
 const PsychologyEngine = () => {
@@ -192,7 +192,7 @@ const PsychologyEngine = () => {
                             <motion.path
                                 d="M 0 100 Q 75 20 150 100 T 300 100"
                                 fill="none"
-                                stroke="#8B5CF6"
+                                stroke="var(--color-secondary)"
                                 strokeWidth="2"
                                 initial={{ pathLength: 0 }}
                                 animate={{ pathLength: 1 }}
@@ -204,7 +204,7 @@ const PsychologyEngine = () => {
                                     cx={x} 
                                     cy={100 + Math.sin(x/50) * 40} 
                                     r="4" 
-                                    fill={i === 2 ? '#8B5CF6' : '#fff'}
+                                    fill={i === 2 ? 'var(--color-secondary)' : 'var(--bg-main)'}
                                     animate={{ r: [4, 6, 4] }}
                                     transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
                                 />
@@ -238,7 +238,7 @@ const PsychologyEngine = () => {
                                     cy="128"
                                     r="100"
                                     fill="transparent"
-                                    stroke="#F472B6"
+                                    stroke="var(--color-accent)"
                                     strokeWidth="12"
                                     strokeDasharray="628"
                                     initial={{ strokeDashoffset: 628 }}

@@ -7,7 +7,7 @@ const KNOWLEDGE_BASE = [
   { keywords: ['service', 'offer', 'what do you do', 'skills'], answer: "I specialize in Website Development (React/FastAPI), UI Redesign, WhatsApp Automation, SEO, and Maintenance. Essentially, I build high-performance digital engines for your business." },
   { keywords: ['whatsapp', 'automation', 'bot'], answer: "Our WhatsApp automation includes lead capture bots, auto-replies, and appointment booking systems integrated directly with your business number." },
   { keywords: ['psychology', 'engine', 'conversion'], answer: "The Psychology Engine is our proprietary AI tool that analyzes user interaction data to optimize website layouts for maximum resonance and conversion." },
-  { keywords: ['contact', 'hire', 'talk', 'email', 'whatsapp'], answer: "You can reach me via the contact form below, or directly on WhatsApp using the button in the header. Ready to architect your digital presence?" },
+  { keywords: ['contact', 'hire', 'talk', 'email', 'whatsapp'], answer: `You can reach me via the contact form below, email me at ${import.meta.env.VITE_EMAIL || 'zenbytelabsofficial@gmail.com'}, or chat on WhatsApp at ${import.meta.env.VITE_WHATSAPP_DISPLAY || '+91 63740 66541'}. Ready to architect your digital presence?` },
   { keywords: ['hosting', 'domain', 'ssl'], answer: "Every Business and Growth pack includes end-to-end hosting setup, domain guidance, and SSL installation to ensure your site is secure and live." },
 ]
 
@@ -66,7 +66,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 50, scale: 0.9, filter: 'blur(10px)' }}
-            className="mb-6 w-[350px] md:w-[400px] h-[600px] bg-[#020617] overflow-hidden rounded-[2.5rem] shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col border border-primary/20 backdrop-blur-2xl"
+            className="mb-6 w-[calc(100vw-3rem)] sm:w-[350px] md:w-[400px] h-[600px] max-h-[80vh] bg-bg-surface overflow-hidden rounded-[2.5rem] shadow-2xl flex flex-col border border-glass-border backdrop-blur-2xl origin-bottom-right"
           >
             {/* Header */}
             <div className="p-6 bg-primary flex items-center justify-between shadow-xl z-20">
@@ -103,8 +103,8 @@ const Chatbot = () => {
                 >
                   <div className={`group relative max-w-[85%] p-5 rounded-[2rem] text-[13px] leading-relaxed transition-all ${
                     msg.role === 'user' 
-                    ? 'bg-secondary/20 border border-secondary/30 text-white rounded-br-none shadow-[0_10px_20px_rgba(139,92,246,0.1)]' 
-                    : 'bg-white/5 border border-primary/10 text-muted rounded-bl-none hover:border-primary/30'
+                    ? 'bg-secondary/15 dark:bg-secondary/20 border border-secondary/30 text-main rounded-br-none shadow-lg' 
+                    : 'bg-black/5 dark:bg-white/5 border border-glass-border text-muted rounded-bl-none hover:border-primary/30'
                   }`}>
                     {msg.content}
                     <div className={`absolute -bottom-5 ${msg.role === 'user' ? 'right-0 text-right' : 'left-0'} text-[8px] font-mono text-muted/40 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity`}>
@@ -133,7 +133,7 @@ const Chatbot = () => {
                         onClick={() => {
                             setInput(action.query)
                         }}
-                        className="whitespace-nowrap flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0F172A] border border-white/5 text-[10px] font-black uppercase tracking-tighter text-muted hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 shadow-lg"
+                        className="whitespace-nowrap flex items-center gap-2 px-4 py-2.5 rounded-full bg-bg-main dark:bg-[#0F172A] border border-glass-border text-[10px] font-black uppercase tracking-tighter text-muted hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 shadow-lg"
                     >
                         {action.icon} {action.label}
                     </button>
@@ -143,7 +143,7 @@ const Chatbot = () => {
             {/* Input Area */}
             <form 
               onSubmit={handleSend}
-              className="p-6 border-t border-white/5 bg-[#020617] relative"
+              className="p-6 border-t border-glass-border bg-bg-surface relative"
             >
               <div className="flex items-center gap-4 relative z-10">
                 <input 
@@ -151,7 +151,7 @@ const Chatbot = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="EX: Describe Pricing_Protocol..."
-                  className="flex-grow bg-white/5 border border-white/10 rounded-3xl px-6 py-4 text-xs text-white focus:outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-mono placeholder:text-muted/30"
+                  className="flex-grow bg-bg-main dark:bg-white/5 border border-glass-border rounded-3xl px-6 py-4 text-xs text-main focus:outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-mono placeholder:text-muted/50"
                 />
                 <motion.button 
                   type="submit"

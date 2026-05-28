@@ -41,12 +41,12 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Magnetic>
-              <button className="btn-primary flex items-center gap-2 whitespace-nowrap">
+              <a href="#pricing" className="btn-primary flex items-center gap-2 whitespace-nowrap">
                 🚀 Get Your Website <ArrowRight size={18} />
-              </button>
+              </a>
             </Magnetic>
             <Magnetic>
-              <a href="https://wa.me/yournumber" target="_blank" rel="noreferrer" className="btn-secondary flex items-center gap-2">
+              <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP || '916374066541'}`} target="_blank" rel="noreferrer" className="btn-secondary flex items-center gap-2">
                 💬 Chat on WhatsApp
               </a>
             </Magnetic>

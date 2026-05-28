@@ -68,7 +68,7 @@ const Process = () => {
         >
           STEP_BY_STEP_FLOW
         </motion.span>
-        <h2 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.8]">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.8]">
           Project <br /> <span className="text-gradient">Process.</span>
         </h2>
       </div>
@@ -103,7 +103,7 @@ const Process = () => {
 
               {/* Dynamic Content Card */}
               <div className="flex-1 w-full relative z-10">
-                <div className={`group relative p-10 md:p-14 glass-card border-none hover:bg-bg-surface transition-colors duration-500 ${index % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}>
+                <div className={`group relative p-10 md:p-14 glass-card border-none hover:bg-bg-surface ${index % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}>
                   {/* Phase Label */}
                   <div className={`flex items-center gap-4 mb-10 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                     <div className={`h-14 w-14 rounded-2xl flex items-center justify-center shadow-xl ${step.accent}`}>
@@ -115,7 +115,7 @@ const Process = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-5xl md:text-6xl font-black mb-8 italic tracking-tighter uppercase leading-[0.85] text-main">
+                  <h3 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 italic tracking-tighter uppercase leading-[0.85] text-main">
                     {step.title}
                   </h3>
                   <p className="text-lg md:text-xl text-muted leading-relaxed font-medium opacity-90 mb-8 max-w-xl group-hover:text-main transition-colors mx-auto md:mx-0">

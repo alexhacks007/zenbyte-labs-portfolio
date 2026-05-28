@@ -4,6 +4,7 @@ import Hero from './sections/Hero'
 import About from './sections/About'
 import Services from './sections/Services'
 import Projects from './sections/Projects'
+import Templates from './sections/Templates'
 import Pricing from './sections/Pricing'
 import Process from './sections/Process'
 import PsychologyEngine from './sections/PsychologyEngine'
@@ -16,7 +17,7 @@ import Chatbot from './components/Chatbot'
 import Lenis from 'lenis'
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark')
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -61,6 +62,7 @@ function App() {
         <About />
         <Services />
         <Projects />
+        <Templates />
         <Pricing />
         <Process />
         <PsychologyEngine />
