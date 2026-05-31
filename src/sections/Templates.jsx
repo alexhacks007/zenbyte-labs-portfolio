@@ -43,45 +43,35 @@ const templates = [
     }
   },
   {
-    id: "nomadboutique",
-    title: "NomadBoutique Shop Core",
+    id: "brancy",
+    title: "Brancy Beauty Salon",
     category: "E-commerce",
-    desc: "A lightning-fast micro e-commerce hub with animated sliding cart mechanics and Stripe/Razorpay sync foundations.",
-    thumbnail: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800",
-    features: ["Slide-out Synaptic Cart", "Interactive Spec Zoom", "Instant Payment Flow", "Technical Inventory Tracker"],
-    metrics: "Ultra-Light Bundle Size",
-    liveUrl: "https://nomadshop-demo.com",
+    desc: "A luxury cosmetic & beauty salon platform featuring product shop layouts, interactive cart drawers, and client booking sync.",
+    thumbnail: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800",
+    features: ["Slide-out Cart & Checkout", "Service Categories & Shop", "Interactive FAQ Section", "Dynamic Header & Footer Navigation"],
+    metrics: "98% PageSpeed • Beautiful UI",
+    liveUrl: "https://spa-beauty-salon-template-4hm4.vercel.app/faq",
     previewData: {
-      type: "ecommerce",
-      title: "NomadBoutique",
-      tagline: "Curated Technical Goods for Modern Nomads",
-      heroImg: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200",
-      products: [
-        { id: 1, name: "Synaptic Backpack Pro", price: 12999, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=400" },
-        { id: 2, name: "Outlaw Technical Shell", price: 18999, img: "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&q=80&w=400" },
-        { id: 3, name: "Vanguard Desk Organizer", price: 4499, img: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=400" }
-      ]
+      type: "iframe",
+      title: "Brancy Salon",
+      tagline: "Cosmetic & Beauty Salon Website Template",
+      heroImg: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=1200"
     }
   },
   {
-    id: "vanguardportfolio",
-    title: "Vanguard Creative Schema",
+    id: "udrone",
+    title: "Udrone UAV Platform",
     category: "Creative Portfolio",
-    desc: "A high-density portfolio canvas engineered for designers, engineers, and agencies. Dark mode default with full red compatibility.",
-    thumbnail: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
-    features: ["GSAP Horizontal Scrolling", "Dynamic Cursor Attractors", "Noise Depth Overlays", "Synaptic Form Fields"],
-    metrics: "100% Core Web Vitals Score",
-    liveUrl: "https://vanguard-demo.com",
+    desc: "A high-performance UAV business & aerial videography template featuring cinematic video backgrounds, project galleries, and custom pilot logs.",
+    thumbnail: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=80&w=800",
+    features: ["Cinematic 4K Video Backgrounds", "Dynamic Project Showcase", "FAA Part 107 Pilot Log Sync", "Client Inquiry Intake Portal"],
+    metrics: "4K Cinematic • FAA Licensed",
+    liveUrl: "https://drone-template.vercel.app/themes/udrone/index.html",
     previewData: {
-      type: "portfolio",
-      title: "Vanguard Schema",
-      tagline: "Industrial Design Meets Surgical Code",
-      heroImg: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200",
-      projects: [
-        { title: "NeuroOS Interface", category: "UX Engineering" },
-        { title: "Krypton Database", category: "Backend Infrastructure" },
-        { title: "Vortex Ledger", category: "Web3 Platform" }
-      ]
+      type: "iframe",
+      title: "Udrone Platform",
+      tagline: "Drone UAV Business & Aerial Videography Website Template",
+      heroImg: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=80&w=1200"
     }
   }
 ]
@@ -251,7 +241,7 @@ const Templates = () => {
 
   // Parameterized template preview engine
   const renderTemplateContent = (template, viewMode = "desktop") => {
-    if (template.id === "medvitals" || template.id === "simplecafe") {
+    if (template.id === "medvitals" || template.id === "simplecafe" || template.id === "brancy" || template.id === "udrone") {
       return (
         <iframe 
           src={template.liveUrl} 
@@ -751,6 +741,7 @@ const Templates = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, type: "spring", stiffness: 200, damping: 22 }}
+              whileHover={{ y: -8 }}
               className="glass-card flex flex-col group"
             >
               <div className="relative h-64 rounded-[2rem] overflow-hidden mb-8 border border-glass-border bg-black/20">
@@ -796,7 +787,7 @@ const Templates = () => {
       {/* Simulator Modal Frame */}
       <AnimatePresence>
         {selectedTemplate && (
-          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-10">
+          <div data-lenis-prevent className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-10">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}

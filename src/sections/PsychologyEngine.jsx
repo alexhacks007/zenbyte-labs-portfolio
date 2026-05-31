@@ -58,6 +58,7 @@ const PsychologyEngine = () => {
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-primary font-mono text-[10px] tracking-[0.4em] uppercase mb-4 block"
         >
           Neural_Interface_v4.0

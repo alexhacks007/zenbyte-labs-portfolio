@@ -4,31 +4,31 @@ import { ArrowUpRight, TrendingUp, Users, Target } from 'lucide-react'
 
 const projects = [
   {
-    title: "EcoStore E-commerce",
-    tag: "Online Business Solution",
-    metric: "Fast Loading",
-    metricLabel: "Google PageSpeed",
-    img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200",
+    title: "MedVitals Clinic Portal",
+    tag: "Healthcare & Patient Portal",
+    metric: "99% Mobile Score",
+    metricLabel: "Google PageSpeed Core",
+    img: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
     color: "#00FFD1",
-    url: "#"
+    url: "https://alexhacks007.github.io/medical-website-ultra/"
   },
   {
-    title: "Simple Cafe Platform",
-    tag: "Local Cafe Website Platform",
-    metric: "Mobile-First",
-    metricLabel: "User Experience",
-    img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1200",
+    title: "Brancy Beauty Salon",
+    tag: "Cosmetics E-commerce Platform",
+    metric: "98% Desktop Speed",
+    metricLabel: "Lighthouse Performance",
+    img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=1200",
     color: "#8B5CF6",
-    url: "https://cafe-322g0cdzf-zenbytelabsofficial-1596s-projects.vercel.app/"
+    url: "https://spa-beauty-salon-template-4hm4.vercel.app/"
   },
   {
-    title: "Personal Brand Site",
-    tag: "Creative Portfolio",
-    metric: "SEO Ready",
-    metricLabel: "Search Visibility",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+    title: "Udrone UAV Platform",
+    tag: "Aerial Videography Portfolio",
+    metric: "4K Video Ready",
+    metricLabel: "Cinematic Precision",
+    img: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=80&w=1200",
     color: "#F472B6",
-    url: "#"
+    url: "https://drone-template.vercel.app/themes/udrone/index.html"
   }
 ]
 
@@ -63,7 +63,7 @@ const Projects = () => {
         </div>
 
         <motion.div 
-          style={isMobile ? {} : { x }} 
+          style={isMobile ? {} : { x, willChange: 'transform' }} 
           className={isMobile ? "flex flex-col gap-8 px-6 w-full max-w-3xl" : "flex gap-12 px-6 md:px-20 w-full h-[60vh]"}
         >
           {projects.map((project, i) => (

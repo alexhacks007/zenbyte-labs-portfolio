@@ -72,7 +72,9 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className="glass-card group hover:border-primary/40 transition-all !p-8"
+            whileHover={{ y: -8 }}
+            style={{ willChange: 'transform, opacity' }}
+            className="glass-card group hover:border-primary/40 !p-8"
           >
             <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               {service.icon}

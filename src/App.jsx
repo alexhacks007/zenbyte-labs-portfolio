@@ -7,7 +7,7 @@ import Projects from './sections/Projects'
 import Templates from './sections/Templates'
 import Pricing from './sections/Pricing'
 import Process from './sections/Process'
-import PsychologyEngine from './sections/PsychologyEngine'
+import Faq from './sections/Faq'
 import ScrollNarrative from './sections/ScrollNarrative'
 import Contact from './sections/Contact'
 import Footer from './components/Footer'
@@ -65,7 +65,7 @@ function App() {
         <Templates />
         <Pricing />
         <Process />
-        <PsychologyEngine />
+        <Faq />
         <ScrollNarrative />
         <Contact />
       </main>

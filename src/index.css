@@ -77,10 +77,10 @@
   }
 
   .glass-card {
-    @apply glass rounded-[3rem] p-10 md:p-14 transition-all duration-700 shadow-[var(--card-shadow)] border-transparent;
+    @apply glass rounded-[3rem] p-10 md:p-14 shadow-[var(--card-shadow)] border-transparent;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 
     &:hover {
-      @apply transform -translate-y-2;
       box-shadow: 0 50px 100px -30px rgba(15, 164, 175, 0.08);
       background-color: white;
       border-color: rgba(15, 164, 175, 0.3);

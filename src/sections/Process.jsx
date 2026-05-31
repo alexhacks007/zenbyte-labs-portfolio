@@ -64,6 +64,7 @@ const Process = () => {
         <motion.span 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="text-primary font-mono text-xs tracking-[0.5em] mb-6 block uppercase font-black"
         >
           STEP_BY_STEP_FLOW
@@ -88,6 +89,7 @@ const Process = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
+              style={{ willChange: 'transform, opacity' }}
               className={`relative flex flex-col md:flex-row items-center gap-16 md:gap-32 ${
                 index % 2 === 1 ? 'md:flex-row-reverse' : ''
               }`}
@@ -97,13 +99,17 @@ const Process = () => {
                  <motion.div 
                    initial={{ scale: 0 }}
                    whileInView={{ scale: 1 }}
+                   viewport={{ once: true }}
                    className="w-1.5 h-1.5 rounded-full bg-primary" 
                  />
               </div>
 
               {/* Dynamic Content Card */}
               <div className="flex-1 w-full relative z-10">
-                <div className={`group relative p-10 md:p-14 glass-card border-none hover:bg-bg-surface ${index % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}>
+                <motion.div 
+                  whileHover={{ y: -8 }}
+                  className={`group relative p-10 md:p-14 glass-card border-none hover:bg-bg-surface ${index % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}
+                >
                   {/* Phase Label */}
                   <div className={`flex items-center gap-4 mb-10 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                     <div className={`h-14 w-14 rounded-2xl flex items-center justify-center shadow-xl ${step.accent}`}>
@@ -127,7 +133,7 @@ const Process = () => {
                      <span>40.7128° N, 74.0060° W</span>
                      <span>VER_8.0.1</span>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Huge Background Vector - Improved for designer-grade contrast */}

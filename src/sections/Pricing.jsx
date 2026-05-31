@@ -112,6 +112,8 @@ const Pricing = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
+            whileHover={{ y: -8 }}
+            style={{ willChange: 'transform, opacity' }}
             className={`glass-card relative flex flex-col p-10 h-full ${plan.popular ? 'border-primary/40 bg-primary/5 md:scale-105 z-10' : ''}`}
           >
             {plan.popular && (
@@ -167,7 +169,7 @@ const Pricing = () => {
       {/* Booking Modal Popup */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4">
+          <div data-lenis-prevent className="fixed inset-0 z-[100000] flex items-center justify-center p-4">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}

@@ -66,6 +66,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 50, scale: 0.9, filter: 'blur(10px)' }}
+            data-lenis-prevent
             className="mb-6 w-[calc(100vw-3rem)] sm:w-[350px] md:w-[400px] h-[600px] max-h-[80vh] bg-bg-surface overflow-hidden rounded-[2.5rem] shadow-2xl flex flex-col border border-glass-border backdrop-blur-2xl origin-bottom-right"
           >
             {/* Header */}
